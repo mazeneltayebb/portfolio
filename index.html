@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mazen Eltayeb | Spatial Portfolio</title>
+    
+    <!-- Google Fonts: Inter (Closest free font to Apple's SF Pro) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans:['Inter', 'sans-serif'] },
+                    animation: {
+                        blob: "blob 10s infinite alternate",
+                        float: "float 6s ease-in-out infinite",
+                        pulseSlow: "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+                    },
+                    keyframes: {
+                        blob: {
+                            "0%": { transform: "translate(0px, 0px) scale(1)" },
+                            "100%": { transform: "translate(50px, -50px) scale(1.2)" }
+                        },
+                        float: {
+                            "0%, 100%": { transform: "translateY(0)" },
+                            "50%": { transform: "translateY(-15px)" }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Immersive visionOS Background */
+        body { 
+            background-color: #000; 
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* The core Apple Vision Pro Glass Effect */
+        .vision-glass {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.25);
+            border-radius: 2rem;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+        }
+
+        .vision-glass:hover {
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        /* Floating Pill Buttons (White Glass) */
+        .vision-button {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 9999px;
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .vision-button:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: scale(1.05);
+        }
+
+        /* LinkedIn Glass Button */
+        .vision-button-linkedin {
+            background: rgba(10, 102, 194, 0.3);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(10, 102, 194, 0.6);
+            border-radius: 9999px;
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4), 0 0 15px rgba(10, 102, 194, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .vision-button-linkedin:hover {
+            background: rgba(10, 102, 194, 0.6);
+            border: 1px solid rgba(10, 102, 194, 0.9);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5), 0 0 25px rgba(10, 102, 194, 0.5);
+            transform: scale(1.05);
+        }
+
+        /* Instagram Glass Button */
+        .vision-button-instagram {
+            background: linear-gradient(45deg, rgba(240, 148, 51, 0.3) 0%, rgba(220, 39, 67, 0.3) 50%, rgba(188, 24, 136, 0.3) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(220, 39, 67, 0.5);
+            border-radius: 9999px;
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4), 0 0 15px rgba(204, 35, 102, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .vision-button-instagram:hover {
+            background: linear-gradient(45deg, rgba(240, 148, 51, 0.6) 0%, rgba(220, 39, 67, 0.6) 50%, rgba(188, 24, 136, 0.6) 100%);
+            border: 1px solid rgba(220, 39, 67, 0.8);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5), 0 0 25px rgba(204, 35, 102, 0.5);
+            transform: scale(1.05);
+        }
+
+        /* Primary Button (Solid White) */
+        .vision-button-primary {
+            background: rgba(255, 255, 255, 0.9);
+            color: #000;
+            box-shadow: 0 0 20px rgba(255,255,255,0.2);
+        }
+        
+        .vision-button-primary:hover {
+            background: #fff;
+            box-shadow: 0 0 30px rgba(255,255,255,0.4);
+            transform: scale(1.05);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.2); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.4); }
+
+        .typing-cursor::after { content: '|'; animation: blink 1s step-start infinite; color: rgba(255,255,255,0.7); }
+        @keyframes blink { 50% { opacity: 0; } }
+        
+        .delay-2000 { animation-delay: 2s; }
+        .delay-4000 { animation-delay: 4s; }
+    </style>
+</head>
+<body class="antialiased relative selection:bg-white/30 selection:text-white">
+
+    <!-- Immersive Spatial Background -->
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none bg-[#0a0a0a]">
+        <div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-indigo-600/30 rounded-full mix-blend-screen filter blur-[120px] animate-blob"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] bg-cyan-600/20 rounded-full mix-blend-screen filter blur-[140px] animate-blob delay-2000"></div>
+        <div class="absolute top-[30%] left-[40%] w-[40vw] h-[40vw] bg-purple-600/20 rounded-full mix-blend-screen filter blur-[130px] animate-blob delay-4000"></div>
+    </div>
+
+    <!-- Floating visionOS Nav Bar -->
+    <div class="fixed w-full z-50 top-6 flex justify-center px-4 transition-all duration-300">
+        <nav class="vision-glass px-6 py-3 rounded-full flex items-center gap-8 bg-white/5 backdrop-blur-[50px]">
+            <a href="#" class="text-lg font-semibold tracking-tight flex items-center gap-2 hover:text-white/80 transition-colors">
+                <i data-lucide="aperture" class="w-5 h-5"></i>
+                Mazen.
+            </a>
+            <div class="hidden md:flex gap-6 text-sm font-medium text-white/60">
+                <a href="#about" class="hover:text-white transition-colors">About</a>
+                <a href="#projects" class="hover:text-white transition-colors">Work</a>
+                <a href="#skills" class="hover:text-white transition-colors">Skills</a>
+                <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+            </div>
+        </nav>
+    </div>
+
+    <main class="max-w-6xl mx-auto px-6 pt-40 pb-20 space-y-32">
+        
+        <!-- Hero Section -->
+        <section class="grid lg:grid-cols-2 gap-16 items-center min-h-[60vh]">
+            <div class="space-y-8 order-2 lg:order-1 text-center lg:text-left z-10">
+                <div data-aos="fade-right" class="space-y-4">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full vision-glass text-white/80 text-sm font-medium mb-4 shadow-none hover:transform-none">
+                        <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                        Spatial System Engineer
+                    </div>
+                    <h1 class="text-6xl lg:text-8xl font-bold tracking-tighter leading-tight text-transparent bg-clip-text bg-gradient-to-br from-white via-white/90 to-white/40">
+                        Mazen<br/>Eltayeb
+                    </h1>
+                    <h2 class="text-2xl lg:text-3xl text-white/70 font-medium h-10 typing-cursor" id="typed-text"></h2>
+                </div>
+                
+                <p data-aos="fade-right" data-aos-delay="100" class="text-white/60 text-lg leading-relaxed max-w-xl mx-auto lg:mx-0 font-light">
+                    Bridging the gap between hardware and intelligence. I specialize in designing smart, fault-tolerant embedded solutions and innovative AI-integrated circuits.
+                </p>
+                
+                <div data-aos="fade-up" data-aos-delay="200" class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
+                    <a href="/Mazen_Eltayeb_CV.pdf" target="_blank" class="vision-button vision-button-primary inline-flex items-center justify-center px-8 py-4 font-semibold text-black transition-all duration-300">
+                        <i data-lucide="download" class="mr-2 w-5 h-5"></i>
+                        Download Resume
+                    </a>
+                    <a href="#contact" class="vision-button inline-flex items-center justify-center px-8 py-4 font-medium text-white transition-all duration-300">
+                        Contact Me
+                    </a>
+                </div>
+            </div>
+
+            <!-- Spatial Glass Image Frame -->
+            <div data-aos="fade-left" data-aos-duration="1000" class="order-1 lg:order-2 flex justify-center lg:justify-end relative z-10">
+                <div class="relative w-72 h-72 lg:w-[420px] lg:h-[420px] animate-float">
+                    <div class="vision-glass w-full h-full p-2 flex items-center justify-center overflow-hidden rounded-[3rem]">
+                        <img 
+                            src="myweb.jpg" 
+                            alt="Mazen Eltayeb" 
+                            class="object-cover object-top w-full h-full rounded-[2.5rem] scale-105 hover:scale-100 transition-transform duration-700 opacity-90" 
+                            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop';"
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" data-aos="fade-up" class="vision-glass p-10 lg:p-16 relative z-10">
+            <div class="grid md:grid-cols-12 gap-10">
+                <div class="md:col-span-5 space-y-4">
+                    <h2 class="text-3xl lg:text-4xl font-bold tracking-tight text-white/90">About Me</h2>
+                    <p class="text-white/40 text-sm font-medium uppercase tracking-widest">Profile Details</p>
+                </div>
+                <div class="md:col-span-7 space-y-6 text-white/70 text-lg leading-relaxed font-light">
+                    <p>
+                        I am a motivated Electronics Engineer with a deep passion for Embedded Systems and the integration of Artificial Intelligence into hardware interfaces. 
+                    </p>
+                    <p>
+                        My core objective is to design smart systems that solve real-world problems. I thrive in environments that challenge me to continuously enhance my technical expertise, push boundaries, and deliver high-impact engineering projects.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="space-y-12 z-10 relative">
+            <div data-aos="fade-up" class="text-center space-y-2">
+                <h2 class="text-3xl lg:text-4xl font-bold tracking-tight text-white/90">Featured Work</h2>
+                <p class="text-white/50">Recent projects and achievements</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Project 1 -->
+                <div data-aos="fade-up" data-aos-delay="100" class="vision-glass p-8 group flex flex-col h-full">
+                    <div class="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center mb-6 border border-white/10 group-hover:bg-white/20 transition-colors duration-300">
+                        <i data-lucide="cpu" class="w-7 h-7 text-white/80"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <div class="text-white/50 font-medium text-xs mb-2 tracking-widest uppercase">Graduation Project</div>
+                        <h3 class="text-2xl font-bold text-white/90 mb-3">AI-Based Fault Detection</h3>
+                        <p class="text-white/60 leading-relaxed font-light mb-8">
+                            Designed and implemented an intelligent fault detection system integrating embedded hardware with advanced machine learning algorithms to identify system anomalies in real time.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mt-auto">
+                        <span class="px-4 py-1.5 bg-white/5 text-white/70 text-xs font-medium rounded-full border border-white/10">Embedded Systems</span>
+                        <span class="px-4 py-1.5 bg-white/5 text-white/70 text-xs font-medium rounded-full border border-white/10">Machine Learning</span>
+                    </div>
+                </div>
+
+                <!-- Certification -->
+                <div data-aos="fade-up" data-aos-delay="200" class="vision-glass p-8 group flex flex-col h-full">
+                    <div class="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center mb-6 border border-white/10 group-hover:bg-white/20 transition-colors duration-300">
+                        <i data-lucide="award" class="w-7 h-7 text-white/80"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <div class="text-white/50 font-medium text-xs mb-2 tracking-widest uppercase">Certification</div>
+                        <h3 class="text-2xl font-bold text-white/90 mb-3">Aspire Leaders Program</h3>
+                        <p class="text-white/60 leading-relaxed font-light mb-8">
+                            Successfully completed all modules of the prestigious Aspire Leaders Program (Aspire Institute), drastically enhancing leadership, problem-solving, and global collaboration skills.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mt-auto">
+                        <span class="px-4 py-1.5 bg-white/5 text-white/70 text-xs font-medium rounded-full border border-white/10">Leadership</span>
+                        <span class="px-4 py-1.5 bg-white/5 text-white/70 text-xs font-medium rounded-full border border-white/10">Collaboration</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="space-y-12 z-10 relative">
+            <div data-aos="fade-up" class="text-center space-y-2">
+                <h2 class="text-3xl lg:text-4xl font-bold tracking-tight text-white/90">Technical Arsenal</h2>
+                <p class="text-white/50">Core competencies and tools</p>
+            </div>
+            
+            <div class="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto" id="skills-container">
+            </div>
+        </section>
+
+        <!-- Contact CTA -->
+        <section id="contact" data-aos="fade-up" class="vision-glass p-12 md:p-20 text-center space-y-10 relative z-10 flex flex-col items-center">
+            
+            <div class="space-y-4">
+                <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-white/90">Let's Build The Future</h2>
+                <p class="text-white/60 font-light max-w-2xl mx-auto text-lg md:text-xl">
+                    Whether it's hardware development, AI integration, or an exciting new opportunity, my inbox is always open.
+                </p>
+            </div>
+
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-6 w-full max-w-lg">
+                <!-- EMAIL BUTTON -->
+                <a href="mailto:mazeneltayebb@gmail.com" class="vision-button vision-button-primary flex items-center gap-3 px-8 py-4 font-semibold w-full sm:w-auto justify-center">
+                    <i data-lucide="mail" class="w-5 h-5"></i>
+                    <span>mazeneltayebb@gmail.com</span>
+                </a>
+                
+                <div class="flex gap-4">
+                    <!-- LINKEDIN COLORED GLASS BUTTON -->
+                    <a href="https://www.linkedin.com/in/mazeneltayeb/" target="_blank" class="vision-button-linkedin p-4 flex items-center justify-center text-white">
+                        <i data-lucide="linkedin" class="w-6 h-6"></i>
+                    </a>
+                    
+                    <!-- INSTAGRAM COLORED GLASS BUTTON -->
+                    <a href="https://www.instagram.com/_maaziin/" target="_blank" class="vision-button-instagram p-4 flex items-center justify-center text-white">
+                        <i data-lucide="instagram" class="w-6 h-6"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-8 text-center text-white/40 text-sm relative z-10">
+        <p id="copyright-year"></p>
+        <p class="mt-2 font-light tracking-wide">Designed for Spatial Computing.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            offset: 50,
+            duration: 1000,
+            easing: 'ease-out-cubic',
+        });
+        
+        lucide.createIcons();
+
+        document.getElementById('copyright-year').innerText = `© ${new Date().getFullYear()} Mazen Eltayeb. All rights reserved.`;
+
+        const textToType = "Electronics & Embedded Systems Engineer";
+        let i = 0;
+        function typeWriter() {
+            if (i < textToType.length) {
+                document.getElementById("typed-text").innerHTML += textToType.charAt(i);
+                i++;
+                setTimeout(typeWriter, 50); 
+            }
+        }
+        setTimeout(typeWriter, 800); 
+
+        const skills =[
+            "Embedded Systems", "Microcontrollers", "Circuit Design", 
+            "AI Integration", "Signal Processing", "C/C++", "MATLAB", 
+            "IoT Devices", "PCB Design", "Problem Solving", "Hardware Debugging"
+        ];
+        
+        const skillsContainer = document.getElementById("skills-container");
+        skills.forEach((skill, index) => {
+            const delay = index * 50; 
+            const skillHTML = `
+                <div data-aos="zoom-in" data-aos-delay="${delay}" 
+                     class="vision-button px-6 py-3 text-sm md:text-base font-medium text-white/80 cursor-default hover:text-white">
+                    ${skill}
+                </div>
+            `;
+            skillsContainer.innerHTML += skillHTML;
+        });
+    </script>
+</body>
+</html>
